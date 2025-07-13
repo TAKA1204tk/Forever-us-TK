@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Sweet Surprise</title>
+    <title>A surprise for my love</title>
     <style>
         body {
             background: linear-gradient(90deg, #f7c6f0, #e91e63); /* Soft pink gradient */
@@ -29,6 +29,9 @@
             cursor: pointer;
             transition: transform 0.3s ease, color 0.3s ease;
             position: absolute;
+            top: 40%; /* Position the heart at a fixed location */
+            left: 50%; /* Position the heart at a fixed location */
+            transform: translateX(-50%); /* Center the heart horizontally */
         }
 
         .heart:hover {
@@ -61,12 +64,12 @@
     <h1>I love you mi vida I made this for you ^_^</h1>
     <p>Open my heart!</p>
     
-    <!-- Heart that follows the mouse -->
+    <!-- Heart that will now stay in a fixed position -->
     <div id="movingHeart" class="heart">💖</div>
 
     <!-- Hidden message that will appear when the heart is clicked -->
     <div id="hiddenMessage">
-        Youre the light that makes joy feels real in my life, a blessing that life created a soul as perfect, intelligent, sweet, kind, and geninue its the most beautiful way. I Love u Talha 💫
+       Youre the light that makes joy feels real in my life, a blessing that life created a soul as perfect, intelligent, sweet, kind, and geninue its the most beautiful way. I Love u Talha 💫
     </div>
 
     <!-- Full music track that plays once -->
@@ -76,13 +79,6 @@
     </audio>
 
     <script>
-        // Make the heart follow the mouse pointer
-        const movingHeart = document.getElementById('movingHeart');
-        document.body.addEventListener('mousemove', (e) => {
-            movingHeart.style.left = e.pageX + 'px';
-            movingHeart.style.top = e.pageY + 'px';
-        });
-
         function revealMessage() {
             var message = document.getElementById("hiddenMessage");
             message.style.display = "block"; // Show message when clicked
