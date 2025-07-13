@@ -6,11 +6,15 @@
     <title>My Sweet Surprise</title>
     <style>
         body {
-            background: #f7c6f0;
+            background: linear-gradient(90deg, #f7c6f0, #e91e63); /* Soft pink gradient */
             font-family: Arial, sans-serif;
             color: #333;
             text-align: center;
             margin-top: 50px;
+            transition: background 0.5s ease;  /* Smooth background transition */
+            position: relative;
+            height: 100vh;  /* Ensure full page height */
+            overflow: hidden;
         }
 
         h1 {
@@ -23,34 +27,71 @@
         .heart {
             font-size: 3em;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, color 0.3s ease;
+            position: absolute;
         }
 
         .heart:hover {
             transform: scale(1.3);
+            color: #ff4081; /* Change heart color when hovered */
         }
 
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
         }
+
+        #hiddenMessage {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.5em;
+            transition: transform 0.3s ease, color 0.5s ease;
+        }
+
+        #hiddenMessage:hover {
+            transform: scale(1.1);
+            color: #ff4081;
+        }
     </style>
+    <!-- Include Confetti Animation -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-    <h1>I love you mi vida I made this for you ^_^</h1>
+    <h1>I love you mi vida, I made this for you ^_^</h1>
     <p>Open my heart!</p>
-    <div class="heart" onclick="revealMessage()">💖</div>
-    <div id="hiddenMessage" style="display: none; margin-top: 20px; font-size: 1.5em;">
-        Youre the light that makes joy feels real in my life, a blessing that life created a soul as perfect, intelligent, sweet, kind, and geninue its the most beautiful way. I Love u Talha
+    
+    <!-- Heart that follows the mouse -->
+    <div id="movingHeart" class="heart">💖</div>
+
+    <!-- Hidden message that will appear when the heart is clicked -->
+    <div id="hiddenMessage">
+        Youre the light that makes joy feels real in my life, a blessing that life created a soul as perfect, intelligent, sweet, kind, and geninue its the most beautiful way. I Love u Talha 💫
     </div>
 
     <script>
+        // Make the heart follow the mouse pointer
+        const movingHeart = document.getElementById('movingHeart');
+        document.body.addEventListener('mousemove', (e) => {
+            movingHeart.style.left = e.pageX + 'px';
+            movingHeart.style.top = e.pageY + 'px';
+        });
+
         function revealMessage() {
             var message = document.getElementById("hiddenMessage");
-            message.style.display = "block";
-            document.querySelector(".heart").style.display = "none";
+            message.style.display = "block"; // Show message when clicked
+            document.querySelector(".heart").style.display = "none"; // Hide the heart
+            
+            // Play sound when the heart is clicked
+            var clickSound = new Audio('click-sound.mp3'); // Make sure to upload your sound file
+            clickSound.play();
+            
+            // Trigger confetti effect
+            confetti();
         }
+
+        // Add the click event for revealing the message
+        document.querySelector(".heart").addEventListener("click", revealMessage);
     </script>
 
 </body>
