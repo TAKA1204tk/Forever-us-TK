@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🫂 Truth Box</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #fdf0f4, #e5f6ff);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    h1 {
+      color: #4b4b4b;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .box {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 80%;
+      font-size: 1.2rem;
+      color: #333;
+      min-height: 100px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #ff85a1;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin: 5px;
+    }
+
+    button:hover {
+      background-color: #e96c92;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 18px;
+      color: #ffb3c6;
+      animation: floatUp 2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🫂 Truth Box</h1>
+
+  <div class="box" id="truthDisplay">Click one of the buttons below whenever you need truth.</div>
+
+  <div>
+    <button onclick="showMessage(softTruths)">💗 Soft</button>
+    <button onclick="showMessage(strongTruths)">🔥 Real</button>
+    <button onclick="showMessage(groundingTruths)">🧘 Ground</button>
+  </div>
+
+  <script>
+    const SoftTruths = [
+      "You’re not too much. You’re not broken. You’re just healing",
+      "You are still lovable, even when your light feels dim",
+      "You’re allowed to struggle without needing to explain why",
+      "This isn’t a setback. It’s just your nervous system talking",
+      "You’re not a failure for feeling pain. You’re surviving it",
+      "It’s okay to cry, to pause, to do nothing. That’s not weakness",
+      "You are loved even when you can’t feel it",
+      "Your worth doesn’t disappear when your energy does",
+      "You’re allowed to just exist today, no pressure",
+      "Even when you’re quiet, I see you and I still care"
+    ];
+
+    const StrongTruths = [
+      "The craving is loud because you’re getting closer to freedom",
+      "You don’t need to be okay right now, you need to keep going",
+      "You’ve done harder things than this. One more choice won’t break you",
+      "You can sit in the storm. You’ve sat through worse before",
+      "This discomfort? It’s just proof that you’re changing. It means it’s working",
+      "You don’t need to be perfect, you just need to stay present",
+      "If you feel like giving up, it’s proof you haven’t.",
+      "You’ve made it this far, why stop now?",
+      "You can be scared and strong at the same time",
+      "Your struggle isn’t shameful. It’s human. Own it and rise"
+    ];
+
+    const GroundingTruths = [
+      "You are safe. You are not alone. This will pass",
+      "Your thoughts are not facts. You are not your worst moment",
+      "You’re allowed to feel this way. It’s not wrong. It’s just hard",
+      "You are loved, even when your brain tries to convince you otherwise",
+      "This isn’t forever. It’s just a wave. You’re not drowning",
+      "It’s okay to feel blank. It doesn’t mean you’re broken",
+      "You are not the voice in your head. You are the one hearing it",
+      "Even if you feel nothing, you still deserve to heal",
+      "Your logic might be cloudy, but your strength isn’t",
+      "Resting is not weakness. It’s part of the work"
+    ];
+
+    function showMessage(array) {
+      const index = Math.floor(Math.random() * array.length);
+      document.getElementById("truthDisplay").innerText = array[index];
+      createHeart();
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "💗";
+      heart.style.left = `${Math.random() * 80 + 10}%`;
+      heart.style.bottom = "0px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
